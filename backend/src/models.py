@@ -11,3 +11,6 @@ class Role(str, Enum):
 class Message(BaseModel):
     content: str
     role: Role
+
+class Messages(BaseModel):
+    messages: list[Message]
