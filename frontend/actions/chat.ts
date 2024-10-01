@@ -3,7 +3,7 @@
 import { Message } from "../schema";
 
 async function chat(messages: Message[]) {
-    const response = await fetch(`${process.env.BACKEND_URL}/chat`, {
+    const response = await fetch(`http://localhost:8000/chat`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

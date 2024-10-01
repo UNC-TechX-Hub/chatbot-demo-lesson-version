@@ -10,6 +10,7 @@ python = "^3.12"
 openai = "^1.50.2"
 fastapi = {extras = ["standard"], version = "^0.115.0"}
 pydantic = "^2.9.2"
+pendulum = "^3.0.0"
 
 
 [build-system]
