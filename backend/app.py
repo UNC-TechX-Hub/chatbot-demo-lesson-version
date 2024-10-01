@@ -5,6 +5,7 @@ from fastapi import FastAPI
 
 # internal
 from src.io import ChatInput, ChatOutput
+from src.models import Message, Role
 
 app: FastAPI = FastAPI()
 
@@ -14,4 +15,4 @@ def read_root():
 
 @app.post("/chat")
 def chat(input: ChatInput) -> ChatOutput:
-    return {"message": "Hello, World!"}
+    return ChatOutput(message=Message(content="Hello, World!", role=Role.ASSISTANT))
