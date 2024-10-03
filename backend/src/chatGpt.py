@@ -14,7 +14,6 @@ client: OpenAI = OpenAI(
   api_key=os.getenv("OPENAI_API_KEY")
 )
 
-
 def chat(messages: ChatInput) -> ChatOutput:
     completion = client.chat.completions.create(
         model="gpt-4o-mini",  

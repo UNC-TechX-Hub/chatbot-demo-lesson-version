@@ -42,18 +42,16 @@ export default function Home() {
       return;
     }
   
-    const newMessage = messageSchema.parse({ content: inputValue, role: "user" });
+    const newMessage: Message = messageSchema.parse({ content: inputValue, role: "user" });
     currentMessages = [...currentMessages, newMessage];
   
     try {
-      // Validate and log the data before sending it
-      const chatInput = chatInputSchema.parse({ messages: currentMessages });
+      const chatInput: ChatInput = chatInputSchema.parse({ messages: currentMessages });
       console.log("Sending to backend:", chatInput);  // Log the input
   
-      // Make the request
-      const botResponse = await chat(chatInput);
-      const botMessage = chatOutputSchema.parse(botResponse);
-      setMessages([...currentMessages, botMessage.message]);
+      const botResponse: ChatOutput = await chat(chatInput);
+      const botMessage: Message = chatOutputSchema.parse(botResponse).message;
+      setMessages([...currentMessages, botMessage]);
     } catch (error) {
       console.error("Failed to fetch chat response:", error);
     }
