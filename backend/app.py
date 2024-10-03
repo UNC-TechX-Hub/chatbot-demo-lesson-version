@@ -1,10 +1,6 @@
-# builtin
-import os
-
 # external
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
-from openai import AsyncOpenAI
 
 # internal
 from src.io import ChatOutput, ChatInput
@@ -19,7 +15,6 @@ async def lifespan(app: FastAPI):
     yield
     
     ml_models.clear()
-
 
 app: FastAPI = FastAPI(lifespan=lifespan)
 
