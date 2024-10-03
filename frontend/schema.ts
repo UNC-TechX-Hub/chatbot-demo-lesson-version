@@ -1,8 +1,8 @@
 import { z } from "zod";
 
 export const messageSchema = z.object({
-    content: z.string(),
-    role: z.enum(["user", "assistant"])
+    role: z.enum(["user", "assistant"]),
+    content: z.string()
 });
 
 /*
@@ -34,3 +34,8 @@ class ChatOutput(BaseModel):
 */
 
 export type ChatOutput = z.infer<typeof chatOutputSchema>;
+
+
+export const messagesSchema = z.array(messageSchema);
+
+export type Messages = z.infer<typeof messagesSchema>;

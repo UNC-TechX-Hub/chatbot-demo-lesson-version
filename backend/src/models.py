@@ -9,8 +9,9 @@ class Role(str, Enum):
     ASSISTANT = "assistant"
 
 class Message(BaseModel):
-    content: str
     role: Role
+    content: str
+    
 
 class Messages(BaseModel):
     messages: list[Message]

@@ -4,9 +4,8 @@
 from fastapi import FastAPI
 
 # internal
-from src.io import ChatOutput
+from src.io import ChatOutput, ChatInput
 from src.chatGpt import chat
-from src.models import Messages
 
 app: FastAPI = FastAPI()
 
@@ -15,6 +14,7 @@ def read_root():
     return {"message": "Hello, World!"}
 
 @app.post("/chat")
-async def chat_endpoint(input: Messages) -> ChatOutput:
-    output = await chat(input)
+async def chat_endpoint(input: ChatInput) -> ChatOutput:
+    print(f"Received input: {input}")
+    output: ChatOutput = chat(input)
     return output

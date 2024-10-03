@@ -2,12 +2,12 @@
 name = "sep-boil"
 version = "0.1.0"
 description = ""
-authors = ["Farouk Charkas <farouk.charkas@gmail.com>"]
+authors = ["Sean Blizard <emailseanblizard@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
-openai = "^1.50.2"
+openai = "1.3.0"
 fastapi = {extras = ["standard"], version = "^0.115.0"}
 pydantic = "^2.9.2"
 pendulum = "^3.0.0"

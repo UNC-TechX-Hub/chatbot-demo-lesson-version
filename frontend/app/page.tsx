@@ -35,16 +35,32 @@ export default function Home() {
   const [messages, setMessages] = useState<Message[]>([]);
 
   const handleSend = async () => {
-    let currentMessages: Message[] = messages
-    const newMessage = messageSchema.parse({ content: inputValue, role: "user" }); // Message(content="Hello", role="user")
-    setMessages([...currentMessages, newMessage]);
-    currentMessages = [...currentMessages, newMessage]
-    const botResponse = await chat(messages);
-    const botMessage = chatOutputSchema.parse(botResponse);
-    setMessages([...currentMessages, botMessage.message]);
+    let currentMessages: Message[] = messages;
+  
+    if (inputValue.trim() === "") {
+      console.error("No input to send.");
+      return;
+    }
+  
+    const newMessage = messageSchema.parse({ content: inputValue, role: "user" });
+    currentMessages = [...currentMessages, newMessage];
+  
+    try {
+      // Validate and log the data before sending it
+      const chatInput = chatInputSchema.parse({ messages: currentMessages });
+      console.log("Sending to backend:", chatInput);  // Log the input
+  
+      // Make the request
+      const botResponse = await chat(chatInput);
+      const botMessage = chatOutputSchema.parse(botResponse);
+      setMessages([...currentMessages, botMessage.message]);
+    } catch (error) {
+      console.error("Failed to fetch chat response:", error);
+    }
+  
     setInputValue("");
   };
-
+  
   return (
     <div>
       <MessageList messages={messages} />
