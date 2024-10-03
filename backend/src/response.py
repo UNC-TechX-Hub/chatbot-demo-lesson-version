@@ -3,20 +3,21 @@ from dotenv import load_dotenv
 import os
 
 # external
-from openai import OpenAI
+from openai import AsyncOpenAI
+
 # internal
 from .models import Role, Message
 from .io import ChatOutput, ChatInput
 
 load_dotenv()
 
-client: OpenAI = OpenAI(
+client: AsyncOpenAI = AsyncOpenAI(
   api_key=os.getenv("OPENAI_API_KEY")
 )
 
-def chat(messages: ChatInput) -> ChatOutput:
-    completion = client.chat.completions.create(
-        model="gpt-4o-mini",  
+async def chat(messages: ChatInput) -> ChatOutput:
+    completion = await client.chat.completions.create(
+        model="gpt-4",  
         messages=messages.messages
     )
     returnMessage: Message = Message(
