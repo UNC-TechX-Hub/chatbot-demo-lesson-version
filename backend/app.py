@@ -18,12 +18,6 @@ async def lifespan(app: FastAPI):
 
 app: FastAPI = FastAPI(lifespan=lifespan)
 
-@app.get("/")
-def read_root():
-    return {"message": "Hello, World!"}
+# TODO: Add a route to the root URL that returns a message
 
-@app.post("/chat")
-async def chat_endpoint(input: ChatInput) -> ChatOutput:
-    print(f"Received input: {input}")
-    output: ChatOutput = await ml_models["chat"](input)
-    return output
+# TODO: Add a route to the /chat URL that accepts a POST request with a ChatInput body and returns a ChatOutput body

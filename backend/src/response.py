@@ -15,13 +15,4 @@ client: AsyncOpenAI = AsyncOpenAI(
   api_key=os.getenv("OPENAI_API_KEY")
 )
 
-async def chat(messages: ChatInput) -> ChatOutput:
-    completion = await client.chat.completions.create(
-        model="gpt-4",  
-        messages=messages.messages
-    )
-    returnMessage: Message = Message(
-        role=Role.ASSISTANT,
-        content=completion.choices[0].message.content
-    )
-    return ChatOutput(message=returnMessage)
+# TODO: Implement the chat function

@@ -8,10 +8,6 @@ class Role(str, Enum):
     USER = "user"
     ASSISTANT = "assistant"
 
-class Message(BaseModel):
-    role: Role
-    content: str
+# TODO: Create a Message model
     
-
-class Messages(BaseModel):
-    messages: list[Message]
+# TODO: Create a Messages model
